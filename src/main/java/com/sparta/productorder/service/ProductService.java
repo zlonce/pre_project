@@ -30,6 +30,10 @@ public class ProductService {
         return productRepository.findAllByOrderById().stream().map(ProductResponseDto::new).toList();
     }
 
+    public List<ProductResponseDto> getProductById(int id) {
+        return productRepository.findById(id).stream().map(ProductResponseDto::new).toList();
+    }
+
     @Transactional
     public int updateProduct(int id, ProductRequestDto requestDto) {
         Product product = findProduct(id);
