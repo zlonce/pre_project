@@ -27,17 +27,17 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public List<ProductResponseDto> getProductById(@PathVariable int id){
+    public List<ProductResponseDto> getProductById(@PathVariable Integer id){
         return productService.getProductById(id);
     }
 
     @PutMapping("/{id}")
-    public int updateProduct(@PathVariable int id, @RequestBody ProductRequestDto requestDto) {
+    public Long updateProduct(@PathVariable Long id, @RequestBody ProductRequestDto requestDto) {
         return productService.updateProduct(id, requestDto);
     }
 
     @DeleteMapping("/{id}")
-    public int deleteProduct(@PathVariable int id) {
+    public Long deleteProduct(@PathVariable Long id) {
         return productService.deleteProducts(id);
     }
 
