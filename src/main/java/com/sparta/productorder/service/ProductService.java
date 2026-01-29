@@ -30,25 +30,25 @@ public class ProductService {
         return productRepository.findAllByOrderById().stream().map(ProductResponseDto::new).toList();
     }
 
-    public List<ProductResponseDto> getProductById(int id) {
+    public List<ProductResponseDto> getProductById(Long id) {
         return productRepository.findById(id).stream().map(ProductResponseDto::new).toList();
     }
 
     @Transactional
-    public int updateProduct(int id, ProductRequestDto requestDto) {
+    public Long updateProduct(Long id, ProductRequestDto requestDto) {
         Product product = findProduct(id);
 
         product.update(requestDto);
         return id;
     }
 
-    public int deleteProducts(int id) {
+    public Long deleteProducts(Long id) {
         Product product = findProduct(id);
         productRepository.delete(product);
         return id;
     }
 
-    public Product findProduct(int id){
+    public Product findProduct(Long id){
         return productRepository.findById(id).orElse(null);
     }
 }

@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class ProductRequestDto {
-    private Long productName;
+    private String productName;
     private int price;
     private int stock;
 }
