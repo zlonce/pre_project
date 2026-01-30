@@ -33,4 +33,9 @@ public class Product {
         this.price = requestDto.getPrice();
         this.stock = requestDto.getStock();
     }
+
+    public void decreaseStock(){
+        if(this.stock <= 0){throw new IllegalArgumentException("재고가 없습니다.");}
+        this.stock--;
+    }
 }

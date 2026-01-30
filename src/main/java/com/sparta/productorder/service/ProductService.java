@@ -23,7 +23,6 @@ public class ProductService {
 
         ProductResponseDto productResponseDto = new ProductResponseDto(product);
         return productResponseDto;
-
     }
 
     public List<ProductResponseDto> getProducts() {
@@ -49,6 +48,6 @@ public class ProductService {
     }
 
     public Product findProduct(Long id){
-        return productRepository.findById(id).orElse(null);
+        return productRepository.findById(id).orElseThrow(()->new IllegalArgumentException("상품이 존재하지 않습니다."));
     }
 }
