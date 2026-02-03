@@ -126,6 +126,15 @@ Hibernate:
 ```
 
 ## 재고차감
-상품조회시 @Lock(LockModeType.PESSIMISTIC_WRITE)를 사용하여 동시에 같은 상품의 재고에 접근하지 못하도록 하였습니다.
+상품조회시 @Lock(LockModeType.PESSIMISTIC_WRITE)를 사용하여 동시에 같은 상품의 재고에 접근하지 못하도록 하였습니다.<table>
+  <tr>
+    <td width="50%">
+      <img src="URL1" width="100%">
+    </td>
+    <td width="50%">
+      <img src="URL2" width="100%">
+    </td>
+  </tr>
+</table>
 
   
