@@ -1,5 +1,6 @@
 package com.sparta.productorder.entity;
 
+import com.sparta.productorder.dto.request.OrderRequestDto;
 import com.sparta.productorder.dto.request.ProductRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -34,8 +35,10 @@ public class Product {
         this.stock = requestDto.getStock();
     }
 
-    public void decreaseStock(){
-        if(this.stock <= 0){throw new IllegalArgumentException("재고가 없습니다.");}
-        this.stock--;
+    public void decreaseStock(OrderRequestDto requestDto){
+        int quantity = requestDto.getQuantity();
+
+        if(this.stock - quantity < 0){throw new IllegalArgumentException("재고가 없습니다.");}
+        this.stock -= quantity;
     }
 }

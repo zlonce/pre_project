@@ -9,12 +9,12 @@ public class OrderResponseDto {
     private Long orderId;
     private Long productId;
     private String productName;
-    private int stock;
+    private int quantity;
 
     public OrderResponseDto(Order order) {
         this.orderId = order.getOrderId();
         this.productId = order.getProduct().getId();
         this.productName = order.getProduct().getProductName();
-        this.stock = order.getProduct().getStock();
+        this.quantity = order.getQuantity();
     }
 }
