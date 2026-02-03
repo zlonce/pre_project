@@ -1,7 +1,6 @@
 package com.sparta.productorder.dto.response;
 
 import com.sparta.productorder.entity.Order;
-import com.sparta.productorder.entity.Product;
 import lombok.Getter;
 
 @Getter
