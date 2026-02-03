@@ -5,24 +5,27 @@ import com.sparta.productorder.dto.response.OrderResponseDto;
 import com.sparta.productorder.entity.Order;
 import com.sparta.productorder.entity.Product;
 import com.sparta.productorder.repository.OrderRepository;
+import com.sparta.productorder.repository.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 public class OrderService {
     private final OrderRepository orderRepository;
-    private final ProductService productService;
+    private final ProductRepository productRepository;
 
-    public OrderService(OrderRepository orderRepository, ProductService productService) {
+    public OrderService(OrderRepository orderRepository, ProductRepository productRepository) {
         this.orderRepository = orderRepository;
-        this.productService = productService;
+        this.productRepository = productRepository;
     }
 
+    @Transactional
     public OrderResponseDto createOrder(Long id, OrderRequestDto requestDto) {
-        Product product = productService.findProduct(id);
+        Product product = findProduct(id);
         product.decreaseStock(requestDto);
 
         Order order = new Order(requestDto, product);
@@ -38,5 +41,9 @@ public class OrderService {
 
     public Page<OrderResponseDto> getOrdersList(Pageable pageable) {
         return orderRepository.findAll(pageable).map(OrderResponseDto::new);
+    }
+
+    public Product findProduct(Long id){
+        return productRepository.findByIdForUpdate(id).orElseThrow(()->new IllegalArgumentException("상품이 존재하지 않습니다."));
     }
 }
