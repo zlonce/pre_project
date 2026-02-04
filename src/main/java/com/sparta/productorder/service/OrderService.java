@@ -26,7 +26,7 @@ public class OrderService {
     @Transactional
     public OrderResponseDto createOrder(Long id, OrderRequestDto requestDto) {
         Product product = findProduct(id);
-        product.decreaseStock(requestDto);
+        product.decreaseStock(requestDto.getQuantity());
 
         Order order = new Order(requestDto, product);
         orderRepository.save(order);

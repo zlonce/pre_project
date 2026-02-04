@@ -29,8 +29,9 @@ public class ProductService {
         return productRepository.findAllByOrderById().stream().map(ProductResponseDto::new).toList();
     }
 
-    public List<ProductResponseDto> getProductById(Long id) {
-        return productRepository.findById(id).stream().map(ProductResponseDto::new).toList();
+    public ProductResponseDto getProductById(Long id) {
+        Product product = findProduct(id);
+        return new ProductResponseDto(product);
     }
 
     @Transactional
